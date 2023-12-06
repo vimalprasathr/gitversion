@@ -1,9 +1,7 @@
-name: Releases
-
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   release-on-push:
@@ -11,7 +9,25 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: rymndhng/release-on-push-action@master
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          tag_prefix: "v"
-          release_name: "Release <RELEASE_VERSION>"
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run release-on-push action
+        run: npm run release-on-push
+        env:
+          TAG_PREFIX: "v"
+          RELEASE_VERSION: ${{ github.sha }}
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-artifact
+          path: ./path/to/release/artifact
