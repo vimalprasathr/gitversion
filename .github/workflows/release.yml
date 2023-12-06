@@ -6,37 +6,23 @@ on:
       - main
 
 jobs:
-  release-on-push:
+  your_job_name:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-
-      - name: Set up Git
-        run: |
-          git config --global user.email "gssvimal@gmail.com"
-          git config --global user.name "vimalprasathr"
-
-      - name: Install dependencies
-        run: npm install  # Adjust as needed based on your project setup
-
-      - name: Run release-on-push action
+      - name: Set up environment
         run: |
           TAG_PREFIX="v"
           RELEASE_VERSION=$(git rev-parse --short $GITHUB_SHA)
           RELEASE_INFO="{\"version\": \"$TAG_PREFIX$RELEASE_VERSION\", \"sha\": \"$GITHUB_SHA\"}"
           echo "Release version: $TAG_PREFIX$RELEASE_VERSION"
           echo "Release info in JSON format: $RELEASE_INFO"
-          # Create a tag
-          git tag -a "$TAG_PREFIX$RELEASE_VERSION" -m "Release $TAG_PREFIX$RELEASE_VERSION"
-          git push origin "$TAG_PREFIX$RELEASE_VERSION"
+          
+          # Save release info to a JSON file in the root directory
+          echo $RELEASE_INFO > release_info.json
+          ls -sh
 
 
 
