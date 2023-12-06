@@ -16,7 +16,7 @@ jobs:
         run: |
           TAG_PREFIX="v"
           RELEASE_VERSION=$(git rev-parse --short $GITHUB_SHA)
-          RELEASE_INFO="{\"version\": \"$TAG_PREFIX$RELEASE_VERSION\", \"sha\": \"$GITHUB_SHA\"}"
+          RELEASE_INFO="{\"version\": \"$TAG_PREFIX$RELEASE_VERSION\"}"
           echo "Release version: $TAG_PREFIX$RELEASE_VERSION"
           echo "Release info in JSON format: $RELEASE_INFO"
           
