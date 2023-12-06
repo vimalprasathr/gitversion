@@ -1,4 +1,4 @@
-name: Release on Push
+name: Release Versioning
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  your_job_name:
+  Release_Versioning:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -23,6 +23,7 @@ jobs:
           # Save release info to a JSON file in the root directory
           echo $RELEASE_INFO > release_info.json
           ls -sh
+          cat release_info.json
 
 
 
