@@ -19,6 +19,11 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Set up Git
+        run: |
+          git config --global user.email "gssvimal@gmail.com"
+          git config --global user.name "vimalprasathr"
+
       - name: Install dependencies
         run: npm install  # Adjust as needed based on your project setup
 
@@ -32,6 +37,7 @@ jobs:
           # Create a tag
           git tag -a "$TAG_PREFIX$RELEASE_VERSION" -m "Release $TAG_PREFIX$RELEASE_VERSION"
           git push origin "$TAG_PREFIX$RELEASE_VERSION"
+
 
 
           # Create a release using GitHub CLI
