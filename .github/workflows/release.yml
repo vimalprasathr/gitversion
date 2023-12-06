@@ -32,8 +32,8 @@ jobs:
           echo "Release info in JSON format: $RELEASE_INFO"
 
           # Create a tag
-          git tag -a "$TAG_PREFIX$RELEASE_VERSION" -m "Release $TAG_PREFIX$RELEASE_VERSION"
-          git push origin "$TAG_PREFIX$RELEASE_VERSION"
+          #git tag -a "$TAG_PREFIX$RELEASE_VERSION" -m "Release $TAG_PREFIX$RELEASE_VERSION"
+          #git push origin "$TAG_PREFIX$RELEASE_VERSION"
 
           # Create a release using GitHub CLI
           #gh release create "$TAG_PREFIX$RELEASE_VERSION" ./path/to/release/artifact --notes "$RELEASE_INFO"
