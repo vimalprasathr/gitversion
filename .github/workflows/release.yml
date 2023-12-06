@@ -12,6 +12,7 @@ jobs:
       - name: Get current version
         id: version
         run: |
+          cd /
           TAG_PREFIX="v"
           if [ -f version.txt ]; then
             CURRENT_VERSION=$(cat version.txt)
