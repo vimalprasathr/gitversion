@@ -9,7 +9,7 @@ jobs:
   release-on-push:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -22,7 +22,7 @@ jobs:
       - name: Set up Git
         run: |
           git config --global user.email "gssvimal@gmail.com"
-          git config --global user.name "vimalprasathr"
+          git config --global user.name "Yvimalprasathr"
 
       - name: Install dependencies
         run: npm install  # Adjust as needed based on your project setup
@@ -37,6 +37,7 @@ jobs:
           # Create a tag
           git tag -a "$TAG_PREFIX$RELEASE_VERSION" -m "Release $TAG_PREFIX$RELEASE_VERSION"
           git push origin "$TAG_PREFIX$RELEASE_VERSION"
+
 
 
 
