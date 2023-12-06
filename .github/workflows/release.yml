@@ -26,4 +26,15 @@ jobs:
         run: |
           TAG_PREFIX="v"
           RELEASE_VERSION=$(git rev-parse --short $GITHUB_SHA)
+          RELEASE_INFO="{\"version\": \"$TAG_PREFIX$RELEASE_VERSION\", \"sha\": \"$GITHUB_SHA\"}"
+
           echo "Release version: $TAG_PREFIX$RELEASE_VERSION"
+          echo "Release info in JSON format: $RELEASE_INFO"
+
+          # Create a tag
+          git tag -a "$TAG_PREFIX$RELEASE_VERSION" -m "Release $TAG_PREFIX$RELEASE_VERSION"
+          git push origin "$TAG_PREFIX$RELEASE_VERSION"
+
+          # Create a release using GitHub CLI
+          #gh release create "$TAG_PREFIX$RELEASE_VERSION" ./path/to/release/artifact --notes "$RELEASE_INFO"
+
