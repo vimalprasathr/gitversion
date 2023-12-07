@@ -1,2 +1,2 @@
 From nginx
-CMD apt-get install wget
+RUN apt-get install wget
