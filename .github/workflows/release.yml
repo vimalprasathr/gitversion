@@ -20,6 +20,6 @@ jobs:
         uses: jenkins-x-plugins/jx-release-version@v2.7.0
 
       - name: do something with the next version
-        run: echo next version is $VERSION
+        run: echo "next version is ${{ steps.nextversion.outputs.version }}"
         env:
           VERSION: ${{ steps.nextversion.outputs.version }}
