@@ -9,10 +9,12 @@ jobs:
   yourjob:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          token: ${{ secrets.GIT_BOT_TOKEN }}
+          token: ${{ secrets.GIT_BOT_TOKEN }} # Make sure this secret exists in your repository
+
       - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
       - id: nextversion
@@ -23,3 +25,4 @@ jobs:
         run: echo "next version is ${{ steps.nextversion.outputs.version }}"
         env:
           VERSION: ${{ steps.nextversion.outputs.version }}
+
